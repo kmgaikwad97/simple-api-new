@@ -7,6 +7,7 @@ const postUser = async (req, res) => {
         const addUser = new Products(req.body);
         console.log(addUser, "adddddddd");
         const inserUser = await addUser.save({});
+        console.log("inserUser ::",inserUser);
         res.status(201).send(inserUser);
     } catch (err) {
         res.status(409).send(err);
