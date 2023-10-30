@@ -2,7 +2,7 @@ const Products = require('../model/model')
 
 
 // Save User
-const postUser = async (req, res) => {
+const postProduct = async (req, res) => {
     try {
         const addUser = new Products(req.body);
         console.log(addUser, "adddddddd");
@@ -16,7 +16,7 @@ const postUser = async (req, res) => {
 };
 
 // Get All User
-const getUser = async (req, res) => {
+const getProduct = async (req, res) => {
     try {
         const getUser = await Products.find({});
         res.send(getUser);
@@ -40,7 +40,7 @@ const searchApi = async (req, res) => {
 };
 
 module.exports = {
-    getUser,
-    postUser,
+    getProduct,
+    postProduct,
     searchApi
 }
