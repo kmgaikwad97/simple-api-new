@@ -10,9 +10,10 @@ const userSchema = new mongoose.Schema({
     name:{
         type:'string'
     },
-    tc:{type:Boolean,required:true},
+    tc:{type:Boolean},
+    products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Products' }]
     // password_confirmation:{type:String,required:true,trim:true},
-    // phone:{
+    // phone:{  
     //     type:'string'
     // },
     // age:{
