@@ -45,7 +45,7 @@ const port = process.env.PORT
 // database
 require("./config/conn");
 
-// listening
+// listening 
 app.listen(port,()=>{
     console.log(`connected to the ${port}`);
 })  
