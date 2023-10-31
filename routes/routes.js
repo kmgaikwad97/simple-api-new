@@ -3,7 +3,7 @@ const express = require("express");
 const router = new express.Router();
 
 
-const {getProduct, postProduct,getCart} = require('../controller/product')
+const {getProduct, postProduct,getCart, getParticularProduct} = require('../controller/product')
 const {createUser, getAllUsers, userLogin, addToCart} = require('../controller/User');
 const { verifyToken } = require("../controller/verify");
 
@@ -16,5 +16,7 @@ router.route("/login/").post(userLogin)
 
 router.route(`/addtocart/:id`).post(verifyToken,addToCart)
 router.route(`/getCart/`).get(verifyToken,getCart)
+
+router.route(`/product/:id`).get(verifyToken,getParticularProduct)
 
 module.exports = router 

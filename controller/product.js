@@ -29,21 +29,35 @@ const getProduct = async (req, res) => {
 // Get cart
 const getCart = async (req, res) => {
     try {
+        
         // Assuming you have a user's unique identifier, e.g., their ID
         const userId = req.tokenData.userID; // This assumes you have stored user information in the token during login
 
         // Find the user by their unique identifier and populate the 'products' field
         const user = await userSchema.findById(userId).populate('products');
-        
+        console.log("user ::",user);        
         if (!user) {
             return res.status(404).send('User not found');
         }
 
-        res.status(200).json(user.products);
+        res.status(200).json({data:user.products,count:user.__v});
     } catch (err) {
         res.status(500).send(err);
     }
 };
+
+// on clicking the product = get that particular product,
+const getParticularProduct = async(req,res)=>{
+    // const userData = req.tokenData.userID
+    // console.log("userid :123:", userData);
+    console.log("req.params.id ::",req.params.id);
+    try{
+        const product = await Products.findById(req.params.id) 
+        res.status(200).send(product);
+    }catch(err){
+        res.status(409).send(err);
+    }
+}
 
 // Save User
 const searchApi = async (req, res) => {
@@ -63,5 +77,6 @@ module.exports = {
     getProduct,
     postProduct,
     searchApi,
-    getCart
+    getCart,
+    getParticularProduct
 }
