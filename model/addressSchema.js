@@ -1,18 +1,34 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-    email:{
+    country:{
         type:'string'
     },
-    password:{
+    fullname:{
         type:'string'
     },
-    name:{
+    mobile:{
         type:'string'
     },
-    tc:{type:Boolean},
-    products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Products' }],
-    address:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Address' }],
+    pincode:{
+        type:'string'
+    },
+    flat:{
+        type:'string'
+    },
+    area:{
+        type:'string'
+    },
+    landmark:{
+        type:'string'
+    },
+    city:{
+        type:'string'
+    },
+    state:{
+        type:'string'
+    },
+    user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
     // password_confirmation:{type:String,required:true,trim:true},
     // phone:{  
     //     type:'string'
@@ -28,4 +44,5 @@ const userSchema = new mongoose.Schema({
     // }
 })
 
-module.exports = mongoose.model('User',userSchema)
+module.exports = mongoose.model('Address',userSchema)
+

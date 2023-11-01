@@ -35,12 +35,27 @@ const getCart = async (req, res) => {
 
         // Find the user by their unique identifier and populate the 'products' field
         const user = await userSchema.findById(userId).populate('products');
-        console.log("user ::",user);        
+        console.log("user ::",user);  
+        
+        
         if (!user) {
             return res.status(404).send('User not found');
         }
 
-        res.status(200).json({data:user.products,count:user.__v});
+        // const cartProducts = user.products;
+        // let total = 0;
+        // cartProducts.forEach((product) => {
+        //     total += product.price;
+        // });
+
+        const cartProduct = user.products
+        let total = 0
+        cartProduct.forEach((product)=>{
+            total += product.price
+        })
+        console.log("total ::",total);
+
+        res.status(200).json({data:user.products,count:user.__v,total:total});
     } catch (err) {
         res.status(500).send(err);
     }

@@ -5,6 +5,7 @@ const router = new express.Router();
 
 const {getProduct, postProduct,getCart, getParticularProduct} = require('../controller/product')
 const {createUser, getAllUsers, userLogin, addToCart} = require('../controller/User');
+const {addAddress} = require('../controller/address');
 const { verifyToken } = require("../controller/verify");
 
 router.route("/getAllProducts/").get(getProduct)
@@ -18,5 +19,8 @@ router.route(`/addtocart/:id`).post(verifyToken,addToCart)
 router.route(`/getCart/`).get(verifyToken,getCart)
 
 router.route(`/product/:id`).get(verifyToken,getParticularProduct)
+
+// address
+router.route(`/address/`).post(verifyToken,addAddress)
 
 module.exports = router 
