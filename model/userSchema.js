@@ -13,6 +13,8 @@ const userSchema = new mongoose.Schema({
     tc:{type:Boolean},
     products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Products' }],
     address:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Address' }],
+    token:{type:'string'},
+    orderAddress:{type:'string'}
     // password_confirmation:{type:String,required:true,trim:true},
     // phone:{  
     //     type:'string'

@@ -62,13 +62,38 @@ const addAddress = async (req, res) => {
 const getAddress = async (req, res) => {
     try {
         const getAdd = await Address.find({});
+        console.log("getAdd ::",getAdd);
         res.send(getAdd);
     } catch (err) {
         res.status(400).send(err);
     }
 };
 
+// Get All User
+const getUsersAddress = async (req, res) => {
+
+    const userData = req.tokenData
+    console.log("userid :123:", userData);
+    console.log("req.body ::", req.params);
+
+    const myUserData = await userSchema.findById(userData.userID)
+    console.log("myUserData :123:", myUserData.address);
+    
+    try {
+        const userAddresses = await Address.find({ _id: { $in: myUserData.address } });
+        console.log("userAddresses ::",userAddresses);
+        res.status(200).json({ "status": "success", "addresses": userAddresses });
+    } catch (err) {
+        res.status(400).send(err.message);
+    }
+};
+const useThisAddress = async(req,res)=>{
+    
+}
+
 module.exports = {
     addAddress,
-    getAddress
+    getAddress,
+    getUsersAddress,
+    useThisAddress
 }

@@ -110,13 +110,19 @@ const userLogin = async (req, res) => {
         const { email, password } = req.body
         if (email && password) {
             const user = await userSchema.findOne({ email: email })
+            console.log(user,"user :::");
             if (user != null) {
                 const isMatch = await bcrypt.compare(password, user.password)
                 if ((user.email === email) && isMatch) {
 
                     // Generate JWT Token 
                     const token = jwt.sign({ userID: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '5d' })
-                    res.status(200).send({ "status": "success", "message": "Registration Successfully", "token": token })
+
+                    // Update the user object with the new token
+                    user.token = token;
+                    // Save the updated user object with the new token to the database
+                    await user.save();
+                    res.status(200).send({ "status": "success", "message": "Login Successfully", "token": token })
                 } else {
                     res.send({ "status": "failed", "message": "Email or Password is not Valid." })
                 }
