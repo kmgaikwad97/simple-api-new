@@ -9,6 +9,7 @@ const {addAddress,getAddress, getUsersAddress} = require('../controller/address'
 const { verifyToken } = require("../controller/verify");
 const { uploadPhoto,getPhoto } = require("../controller/upload-img")
 const { songUpload,getSong } = require("../controller/song")
+const { videoUpload,getVideo } = require("../controller/video")
  
 router.route("/getAllProducts/").get(getProduct)
 router.route("/createProduct/").post(postProduct)
@@ -18,6 +19,9 @@ router.route("/upload-img/").get(getPhoto)
 
 router.route("/upload-song/").post(songUpload)
 router.route("/upload-song/").get(getSong)
+
+router.route("/upload-video/").post(videoUpload)
+router.route("/upload-video/").get(getVideo)
 
 router.route("/register/").post(createUser)
 router.route("/getAllUsers/").get(verifyToken,getAllUsers)
