@@ -2,7 +2,6 @@
 const mongoose = require("mongoose");
 const dataBase = process.env.DB;
 const DB = `${dataBase}`;
-// userCred
 
 mongoose
   .connect(DB)
@@ -13,5 +12,16 @@ mongoose
     console.log("Connection Failed");
   });
 
+// module.exports = async function connection(){
+//   try{
+
+//     await mongoose.connect(dataBase);
+//     console.log("Connection Successful");
+//   }catch(err){
+//     console.log("Connection Failed");
+//     // console.log(err.message);
+//     throw err
+//   }
+// }
 
 
