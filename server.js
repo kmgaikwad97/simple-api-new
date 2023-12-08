@@ -50,6 +50,9 @@ const { auth } = require('./firebase.config')
 
 // database
 require("./config/conn");
+// const connection = require('./config/conn')
+// (async()=>await connection());
+
 
 
 async function uploadImage(file, quantity) {
@@ -108,5 +111,5 @@ app.post('/test-upload', upload, async (req, res) => {
 
 // listening 
 app.listen(port,()=>{
-    console.log(`connected to the ${port}`);
+    console.log(`connected to the port ${port}`);
 })  
