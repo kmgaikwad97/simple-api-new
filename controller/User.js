@@ -1,3 +1,4 @@
+// const userSchema = require('../model/userSchema')
 const userSchema = require('../model/userSchema')
 const productSchema = require('../model/model')
 const bcrypt = require('bcrypt')

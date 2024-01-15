@@ -10,6 +10,9 @@ const { verifyToken } = require("../controller/verify");
 const { uploadPhoto,getPhoto } = require("../controller/upload-img")
 const { songUpload,getSong } = require("../controller/song")
 const { videoUpload,getVideo } = require("../controller/video")
+
+
+const { createSong,getAllSongs } = require("../controller/music")
  
 router.route("/getAllProducts/").get(getProduct)
 router.route("/createProduct/").post(postProduct)
@@ -36,5 +39,9 @@ router.route(`/product/:id`).get(verifyToken,getParticularProduct)
 router.route(`/address/`).post(verifyToken,addAddress)
 router.route(`/address/`).get(verifyToken,getAddress)
 router.route(`/getUsersAddress/`).get(verifyToken,getUsersAddress)
+
+// spotify
+router.route("/createSong/").post(createSong)
+router.route("/getAllSongs/").get(getAllSongs)
 
 module.exports = router 
